@@ -53,7 +53,9 @@ func main() {
 	// 堆操作
 	heap.Init(hp)
 	heap.Push(hp, Rectangle{100, 10})
-	fmt.Println("top元素：", (*hp)[0])
-	fmt.Println("删除并返回最后一个：", heap.Pop(hp)) // 最后 一个元素
-	fmt.Println("最终slice: ", hp)
+	fmt.Printf("min: %d\n", (*hp)[0])
+	for hp.Len() > 0 {
+		fmt.Printf("%d ", heap.Pop(hp))
+		fmt.Println("最终slice: ", hp)
+	}
 }
