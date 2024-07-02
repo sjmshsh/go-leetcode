@@ -13,7 +13,14 @@ func inorderTraversal(root *TreeNode) []int {
 	cur := root
 
 	for cur != nil || st.Len() > 0 {
-
+		if cur != nil {
+			st.PushBack(cur)
+			cur = cur.Left
+		} else {
+			cur = st.Remove(st.Back()).(*TreeNode)
+			ans = append(ans, cur.Val)
+			cur = cur.Right
+		}
 	}
 
 	return ans
