@@ -13,6 +13,7 @@ func inorderTraversal(root *TreeNode) []int {
 	cur := root
 
 	for cur != nil || st.Len() > 0 {
+		// 把左边全部入队列
 		if cur != nil {
 			st.PushBack(cur)
 			cur = cur.Left
