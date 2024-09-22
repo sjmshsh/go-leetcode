@@ -12,3 +12,11 @@ func main() {
 	panic("A server error occurred!")
 	fmt.Println("End main")
 }
+
+func deferExample() {
+	for i := 0; i < 3; i++ {
+		defer func(i int) {
+			fmt.Println(i)
+		}(i)
+	}
+}
