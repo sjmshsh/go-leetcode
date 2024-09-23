@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"runtime"
 )
 
 func worker1(ctx context.Context, ch <-chan int) {
@@ -20,5 +21,14 @@ func worker1(ctx context.Context, ch <-chan int) {
 }
 
 func main() {
+	runtime.GOMAXPROCS(1)
+	fmt.Println("GOMAXPROCS set to", runtime.GOMAXPROCS(-1))
 
+	for i := 0; i < 10; i++ {
+		go func(i int) {
+			fmt.Println(i)
+		}(i)
+	}
+
+	fmt.Scanln()
 }
