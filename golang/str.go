@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	// 原字符串
@@ -12,6 +14,5 @@ func main() {
 	runeArray[1] = 'a'
 
 	modifiedStr := string(runeArray)
-
 	fmt.Println(modifiedStr)
 }
