@@ -3,20 +3,26 @@ package main
 import (
 	"fmt"
 	"sync"
-	"sync/atomic"
 )
 
 func main() {
-	var counter int32 = 0
-	var wg sync.WaitGroup
-
-	for i := 0; i < 1000; i++ {
-		wg.Add(1)
-		go func() {
-			atomic.AddInt32(&counter, 1)
-			wg.Done()
-		}()
+	var pool = sync.Pool{
+		New: func() interface{} {
+			return new(string)
+		},
 	}
-	wg.Wait()
-	fmt.Println("Counter: ", counter)
+
+	// 获取对象
+	obj := pool.Get().(*string)
+	fmt.Println("Object from pool: ", *obj)
+
+	// 重置对象
+	*obj = "Hello, sync.Pool"
+
+	// 放回池中
+	pool.Put(obj)
+
+	// 再次获取对象
+	obj2 := pool.Get().(*string)
+	fmt.Println("Object from pool again: ", *obj2)
 }
