@@ -8,6 +8,33 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+func constructBinaryTree1(array []int) *TreeNode {
+	var root *TreeNode
+	nodes := make([]*TreeNode, len(array))
+
+	// 初始化二叉树节点
+	for i := 0; i < len(nodes); i++ {
+		var node *TreeNode
+		if array[i] != -1 {
+			node = &TreeNode{
+				Val: array[i],
+			}
+			nodes[i] = node
+			if i == 0 {
+				root = node
+			}
+		}
+	}
+	// 串联节点
+	for i := 0; i*2+2 < len(array); i++ {
+		if nodes[i] != nil {
+			nodes[i].Left = nodes[i*2+1]
+			nodes[i].Right = nodes[i*2+2]
+		}
+	}
+	return root
+}
+
 func constructBinaryTree(array []int) *TreeNode {
 	var root *TreeNode
 	nodes := make([]*TreeNode, len(array))
