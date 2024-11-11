@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // 本题其实就是尽量让石头分成重量相同的两堆, 相撞之后剩下的石头最小
 func lastStoneWeightII(stones []int) int {
